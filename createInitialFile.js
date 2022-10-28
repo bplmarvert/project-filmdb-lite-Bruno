@@ -1,9 +1,9 @@
 //const fs = require("fs");
 import fs from "fs";
 
-/* Creation du fichier de films initial */
-export function createInitialFile() {
-  let listeFilms = [
+// fonction coupée en 2 pour faire des tests mock
+export function createInitialList() {
+  let listFilms = [
     {
       nom: "film1",
       annee: 2020,
@@ -11,7 +11,7 @@ export function createInitialFile() {
       emplacement: "http://www.google.fr",
       acteurs: [{ nom: "acteur1", prenom: "prenom1" }],
       synopsis: "ceci est un synopsis",
-      genre: "comedie",
+      genre: "drame",
       realisateur: "realisateur1",
     },
 
@@ -38,18 +38,19 @@ export function createInitialFile() {
     },
 
     {
-      nom: "film4",
-      annee: 2017,
+      nom: "le grand bleu",
+      annee: 1988,
       miniature: "miniature4",
-      emplacement: "lieu4",
-      acteurs: [{ nom: "acteur1", prenom: "prenom1" }],
-      synopsis: "ceci est un synopsis",
-      genre: "comedie",
-      realisateur: "realisateur2",
+      emplacement: "Ocean",
+      acteurs: [{ nom: "reno", prenom: "jean" }],
+      synopsis:
+        "En Grèce dans les années 1960, le jeune Français Jacques Mayol aime plonger. L Italien Enzo Molinari en fait déjà son rival.",
+      genre: "Drame",
+      realisateur: "luc besson",
     },
 
     {
-      nom: "Les 101 Dalmatiens",
+      nom: "les 101 dalmatiens",
       annee: 1961,
       miniature: "miniature5",
       emplacement: "lieu5",
@@ -59,6 +60,10 @@ export function createInitialFile() {
       realisateur: "Disney",
     },
   ];
+  return listFilms;
+}
 
-  fs.writeFileSync("listeFilms.json", JSON.stringify(listeFilms));
+export function createInitialFile() {
+  let listFilms = createInitialList();
+  fs.writeFileSync("listeFilms.json", JSON.stringify(listFilms));
 }

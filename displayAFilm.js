@@ -12,10 +12,10 @@ export default async function displayAFilm() {
   });
   let filmName = promptTodisplay.film;
 
-  let fichier = fs.readFileSync("listeFilms.json", "utf-8");
-  let lesFilms = JSON.parse(fichier);
-  for (let i = 0; i <= lesFilms.length; i += 1) {
-    let film = lesFilms[i];
+  let file = fs.readFileSync("listeFilms.json", "utf-8");
+  let theFilms = JSON.parse(file);
+  for (let i = 0; i <= theFilms.length; i += 1) {
+    let film = theFilms[i];
     if (film.nom === filmName) {
       console.log(
         chalk.red(

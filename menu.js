@@ -1,5 +1,6 @@
-import { choixFilmToAdd, addFilm } from "./addFilm.js";
-import { listeFilms } from "./listeFilms.js";
+import { addFilm } from "./addFilm.js";
+import { choseFilmToAdd } from "./choseFilmToAdd.js";
+import { listFilms } from "./listFilms.js";
 import displayAFilm from "./displayAFilm.js";
 import removeFilm from "./removeFilm.js";
 import requestDisplayCriterion from "./requestDisplayCriterion.js";
@@ -8,10 +9,10 @@ import prompts from "prompts";
 import { createInitialFile } from "./createInitialFile.js";
 
 export default async function menu() {
-  let choisir = true;
+  let choice = true;
   console.clear();
   createInitialFile();
-  while (choisir === true) {
+  while (choice === true) {
     console.log(chalk.blue("Que voulez vous faire ?"));
     console.log(
       chalk.blue(
@@ -21,34 +22,34 @@ export default async function menu() {
         3) Ajouter un film \n \
         4) Retirer un film \n \
         5) Afficher les films répondant à un critère \n \
-        9) Quitter"
+        9) Quitter \n \n"
       )
     );
 
-    const promptChoix = await prompts({
+    const promptChoice = await prompts({
       type: "number",
-      name: "choix",
+      name: "optionChosen",
       message: "Veuillez saisir le no de l'option choisie ?",
     });
 
-    if (promptChoix.choix === 1) {
-      listeFilms();
+    if (promptChoice.optionChosen === 1) {
+      listFilms();
     }
-    if (promptChoix.choix === 2) {
+    if (promptChoice.optionChosen === 2) {
       await displayAFilm();
     }
-    if (promptChoix.choix === 3) {
-      let nouveauFilm = await choixFilmToAdd();
+    if (promptChoice.optionChosen === 3) {
+      let nouveauFilm = await choseFilmToAdd();
       addFilm(nouveauFilm);
     }
-    if (promptChoix.choix === 4) {
+    if (promptChoice.optionChosen === 4) {
       await removeFilm();
     }
-    if (promptChoix.choix === 5) {
-      requestDisplayCriterion();
+    if (promptChoice.optionChosen === 5) {
+      await requestDisplayCriterion();
     }
-    if (promptChoix.choix === 9) {
-      choisir = false;
+    if (promptChoice.optionChosen === 9) {
+      choice = false;
     }
   }
 }

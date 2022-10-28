@@ -1,10 +1,10 @@
 import fs from "fs";
 
 function displayOneFilm(filmName) {
-  let fichier = fs.readFileSync("listeFilms.json", "utf-8");
-  let lesFilms = JSON.parse(fichier);
-  for (let i = 0; i <= lesFilms.length; i += 1) {
-    let film = lesFilms[i];
+  let file = fs.readFileSync("listeFilms.json", "utf-8");
+  let theFilms = JSON.parse(file);
+  for (let i = 0; i <= theFilms.length; i += 1) {
+    let film = theFilms[i];
     if (film.nom === filmName) {
       return `\n \n Le film : ${film.nom} dans le genre : ${film.genre} est sorti en ${film.annee} \
         \n vous pouvez l'identifier par sa ${film.miniature} \
@@ -15,11 +15,12 @@ function displayOneFilm(filmName) {
   }
 }
 
-let descriptionFilm = displayOneFilm("Les 101 Dalmatiens");
-console.log("description = ", descriptionFilm);
-/*
+let descriptionFilm = displayOneFilm("les 101 dalmatiens");
+//console.log("description = ", descriptionFilm);
+
 test("addFile", () => {
+  // pas un test standard, du à la demande de transformer le film en une chaine de caractère, demande mal comprise
   expect(descriptionFilm.includes("synopsis")).toBe(true);
   expect(descriptionFilm.includes("Dalmatiens")).toBe(true);
   expect(descriptionFilm.includes("Disney")).toBe(true);
-});*/
+});
